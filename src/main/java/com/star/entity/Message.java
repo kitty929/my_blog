@@ -6,10 +6,6 @@ import java.util.List;
 
 /**
  * @Description: 留言实体类
- * @Date: Created in 11:44 2020/6/1
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 public class Message {
 
@@ -21,27 +17,22 @@ public class Message {
     private Date createTime;
     private Long parentMessageId;
     private boolean adminMessage;
+    private String parentEmail;
 
     //回复留言
     private List<Message> replyMessages = new ArrayList<>();
     private Message parentMessage;
     private String parentNickname;
 
-    private String parentEmail;
-
     public String getParentEmail() {
         return parentEmail;
     }
 
-    public String setParentEmail(String parentEmail) {
-        this.parentEmail = parentEmail;
-        return parentEmail;
-    }
+    public String setParentEmail(String parentEmail) {this.parentEmail = parentEmail;return parentEmail;}
 
 
 
-    public Message() {
-    }
+    public Message() {}
 
     public Long getId() {
         return id;

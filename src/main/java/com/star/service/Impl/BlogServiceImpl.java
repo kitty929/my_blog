@@ -16,17 +16,12 @@ import java.util.List;
 
 /**
  * @Description: 博客列表业务层接口实现类
- * @Date: Created in 23:47 2020/6/2
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 @Service
 public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private BlogDao blogDao;
-
 
     //保存新增博客
     @Override
@@ -72,7 +67,6 @@ public class BlogServiceImpl implements BlogService {
 
     //查询首页最新博客列表信息
     @Override
-    // @Cacheable(value = "blogList",key = "'blog'")       // redis缓存
     public List<FirstPageBlog> getAllFirstPageBlog() {
         return blogDao.getFirstPageBlog();
     }

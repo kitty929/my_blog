@@ -9,10 +9,6 @@ import java.util.List;
 
 /**
  * @Description: 博客管理持久层接口
- * @Date: Created in 23:45 2020/6/2
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 @Mapper
 @Repository

@@ -6,10 +6,6 @@ import java.util.List;
 
 /**
  * @Description: 评论实体类
- * @Date: Created in 11:12 2020/6/1
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 public class Comment {
 

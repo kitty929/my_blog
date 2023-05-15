@@ -11,10 +11,6 @@ import java.util.List;
 
 /**
  * @Description: 分类业务层接口实现类
- * @Date: Created in 13:32 2020/6/2
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 @Service
 public class TypeServiceImpl implements TypeService {

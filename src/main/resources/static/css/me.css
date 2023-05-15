@@ -1,5 +1,6 @@
 body{
-    background-image: url("http://images.newstar.net.cn/img/bg.jpg") !important;
+    /*background-image: url("http://images.newstar.net.cn/img/bg.jpg") !important;*/
+    background-image: url("../images/bg1.jpg");
     background-attachment:fixed;
     background-size: 100%;
     no-repeat: center top;

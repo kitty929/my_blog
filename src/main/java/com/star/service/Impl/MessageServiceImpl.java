@@ -16,10 +16,6 @@ import java.util.List;
 
 /**
  * @Description: 留言业务层接口实现类
- * @Date: Created in 11:45 2020/4/16
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -36,8 +32,6 @@ public class MessageServiceImpl implements MessageService {
 
     /**
      * @Description: 查询留言
-     * @Auther: ONESTAR
-     * @Date: 17:26 2020/4/14
      * @Param:
      * @Return: 留言消息
      */
@@ -61,8 +55,6 @@ public class MessageServiceImpl implements MessageService {
 
     /**
      * @Description: 查询出子留言
-     * @Auther: ONESTAR
-     * @Date: 17:31 2020/4/14
      * @Param: childMessages：所有子留言
      * @Param: parentNickname1：父留言的姓名
      * @Return:
@@ -84,8 +76,6 @@ public class MessageServiceImpl implements MessageService {
 
     /**
      * @Description: 循环迭代找出子集回复
-     * @Auther: ONESTAR
-     * @Date: 17:33 2020/4/14
      * @Param: childId：子留言的id
      * @Param: parentNickname1：子留言的姓名
      * @Return:
@@ -116,15 +106,15 @@ public class MessageServiceImpl implements MessageService {
 
             String parentNickname = parentMessage.getNickname();
             String nickName = message.getNickname();
-            String comtent = "亲爱的" + parentNickname + "，您在【ONESTARの客栈】的评论收到了来自" + nickName + "的回复！内容如下：" + "\r\n" + "\r\n" +  message.getContent();
+            String comtent = "亲爱的" + parentNickname + "，您在评论收到了来自" + nickName + "的回复！内容如下：" + "\r\n" + "\r\n" +  message.getContent();
             String parentEmail = parentMessage.getEmail();
 
             // 发送邮件
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-            simpleMailMessage.setSubject("ONESTARの客栈评论回复");  //主题
+            simpleMailMessage.setSubject("留言回复");  //主题
             simpleMailMessage.setText(comtent);   //内容
             simpleMailMessage.setTo(parentEmail); //接收者的邮箱
-            simpleMailMessage.setFrom("onestaryxk@163.com");//发送者邮箱
+            simpleMailMessage.setFrom("wm929mm@163.com");//发送者邮箱
             javaMailSender.send(simpleMailMessage);
         }
 

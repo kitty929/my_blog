@@ -16,22 +16,17 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 
 import java.time.Duration;
 
 /**
  * @ClassName: RedisConfig
- * @Description: TODO
- * @Author ONESTAR
- * @Date: 2020/11/9 19:41
- * @QQ群：530311074
- * @URL：https://onestar.newstar.net.cn/
  * @Version 1.0
  */
 @EnableCaching      // 开启缓存
 @Configuration      // 配置类
 public class RedisConfig extends CachingConfigurerSupport {
-
     /**
      * 配置redistemplate相关配置
      */
@@ -39,7 +34,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
 
         RedisTemplate<String, Object> template = new RedisTemplate<>();
-        // 配置连接工厂
+        // 创建 RedisTemplate 对象，配置连接工厂
         template.setConnectionFactory(factory);
 
         //使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值（默认使用JDK的序列化方式）

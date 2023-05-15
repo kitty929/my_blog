@@ -1,3 +1,4 @@
+//拦截器，用于限制某些请求的访问次数，防止恶意攻击；该方法会在Controller方法被调用之前被执行
 package com.star.aspect;
 
 import com.alibaba.fastjson.JSONObject;
@@ -15,12 +16,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassName: SessionInterceptor
- * @Description: TODO
- * @Author ONESTAR
- * @Date: 2021/1/22 21:18
- * @微信：YXK-ONESTAR
- * @URL：https://onestar.newstar.net.cn/
- * @Version 1.0
  */
 @Component
 public class SessionInterceptor implements HandlerInterceptor {
@@ -30,6 +25,7 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
+//      通过handler参数判断请求是否为HandlerMethod类型，如果是，则获取该方法上的AccessLimit注解，并从注解中获取seconds、maxCount和needLogin等属性值。
         if (handler instanceof HandlerMethod) {
             HandlerMethod hm = (HandlerMethod) handler;
             AccessLimit accessLimit = hm.getMethodAnnotation(AccessLimit.class);
@@ -45,23 +41,24 @@ public class SessionInterceptor implements HandlerInterceptor {
             }
             String ip=request.getRemoteAddr();
             String key = request.getServletPath() + ":" + ip ;
+//            从redis中获取该key对应的计数器count
             Integer count = (Integer) redisTemplate.opsForValue().get(key);
 
             if (null == count || -1 == count) {
+//              说明该IP地址第一次访问该接口，此时将count设置为1，并设置过期时间为seconds秒
                 redisTemplate.opsForValue().set(key, 1,seconds, TimeUnit.SECONDS);
                 return true;
             }
 
             if (count < maxCount) {
                 count = count+1;
+//                更新到redis中
                 redisTemplate.opsForValue().set(key, count,0);
                 return true;
             }
 
             if (count >= maxCount) {
 //                response 返回 json 请求过于频繁请稍后再试
-
-
                 response.setCharacterEncoding("UTF-8");
                 response.setContentType("application/json; charset=utf-8");
                 Response result = new Response<>();
@@ -69,7 +66,6 @@ public class SessionInterceptor implements HandlerInterceptor {
                 result.setMsg("操作过于频繁,请稍后再提交");
                 Object obj = JSONObject.toJSON(result);
                 response.getWriter().write(JSONObject.toJSONString(obj));
-
 
                 return false;
             }

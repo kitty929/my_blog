@@ -16,10 +16,6 @@ import java.util.List;
 
 /**
  * @Description:
- * @Date: Created in 14:56 2020/6/2
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 @Controller
 @RequestMapping("/admin")

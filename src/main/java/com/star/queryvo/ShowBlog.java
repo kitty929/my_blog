@@ -4,10 +4,6 @@ import java.util.Date;
 
 /**
  * @Description: 编辑修改文章实体类
- * @Date: Created in 15:55 2020/6/6
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 public class ShowBlog {
 

@@ -1,3 +1,4 @@
+//配置拦截器，从而对请求进行验证或者过滤等处理操作
 package com.star.config;
 
 import com.star.aspect.SessionInterceptor;
@@ -9,11 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @ClassName: WebMvcConfig
- * @Description: TODO
- * @Author ONESTAR
- * @Date: 2021/1/22 21:53
- * @微信：YXK-ONESTAR
- * @URL：https://onestar.newstar.net.cn/
  * @Version 1.0
  */
 @Configuration

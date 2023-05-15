@@ -7,10 +7,6 @@ import java.util.List;
 
 /**
  * @Description: 博客列表业务层接口
- * @Date: Created in 23:46 2020/6/2
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 public interface BlogService {
 

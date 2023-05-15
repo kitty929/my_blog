@@ -5,10 +5,6 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * @Description: MD5加密工具类
- * @Date: Created in 17:16 2020/5/27
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 public class MD5Utils {
 
@@ -47,7 +43,7 @@ public class MD5Utils {
 
 
     public static void main(String[] args) {
-        System.out.println(code("hello"));
+        System.out.println(code("111111"));
     }
 
 }

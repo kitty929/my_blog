@@ -21,10 +21,6 @@ import java.util.List;
 
 /**
  * @Description: 评论控制器
- * @Date: Created in 10:25 2020/6/23
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 @Controller
 public class CommentController {

@@ -6,10 +6,6 @@ import java.util.Date;
 
 /**
  * @Description: 查询博客列表
- * @Date: Created in 9:31 2020/6/3
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 public class BlogQuery {
 

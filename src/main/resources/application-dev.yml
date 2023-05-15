@@ -3,33 +3,40 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/myblog?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&serverTimezone=GMT%2B8
     username: root
-    password: xxx
+    password: 20020929
+#    最长生命周期
     hikari:
       max-lifetime: 500000
   mail:
     host: smtp.163.com
-    username: xxx@163.com
-    address: xxx@163.com
-    password: xxx
+    username: wm929mm@163.com
+    address: wm929mm@163.com
+    password: LSVYKLEKGSIVVJSA
     default-encoding: utf-8
     protocol: smtp
     port: 25
+#    不同包的日志记录级别，根日志记录器设置为info，com；star包设置为debug；
   level:
     root: info
     com.star: debug
+#    应用程序将写入的日志文件的名称和位置
   file:
     name: log/blog-dev.log
 
 
   redis:
-    host: 127.0.0.1
+    host: localhost
     port: 6379
+    password: 123456
     database: 0
     timeout: 1800000
     lettuce:
       pool:
+#        连接池中最大的活跃连接数
         max-active: 20
+#        连接池达到最大活跃连接数时，获取连接时的最长等待时间为无限等待
         max-wait: -1
+#        连接池中最大的空闲连接数
         max-idle: 5
         min-idle: 0
 

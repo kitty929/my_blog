@@ -2,10 +2,6 @@ package com.star.queryvo;
 
 /**
  * @Description: 最新评论实体类
- * @Date: Created in 19:45 2020/8/19
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 public class NewComment {
 

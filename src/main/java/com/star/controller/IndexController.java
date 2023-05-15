@@ -20,10 +20,6 @@ import java.util.List;
 
 /**
  * @Description: 首页控制器
- * @Date: Created in 21:01 2020/5/20
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 @Controller
 public class IndexController {

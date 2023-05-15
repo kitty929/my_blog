@@ -13,10 +13,6 @@ import java.util.Arrays;
 
 /**
  * @Description: 日志切面处理
- * @Date: Created in 23:31 2020/5/21
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 @Aspect
 @Component
@@ -24,7 +20,7 @@ public class LogAspect {
     // 获取日志信息
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    //定义切面，申明log()是一个切面
+    //定义切面，申明log()是一个切面，其作用于com.star.controller包中所有方法
     @Pointcut("execution(* com.star.controller.*.*(..))")
     public void log() {}
 

@@ -22,10 +22,6 @@ import java.util.List;
 
 /**
  * @Description: 博客管理控制器
- * @Date: Created in 23:45 2020/6/2
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 @Controller
 @RequestMapping("/admin")
@@ -36,7 +32,9 @@ public class BlogController {
     @Autowired
     private TypeService typeService;
 
-    //跳转博客新增页面
+    //跳转博客新增页面，匹配Get请求
+//    通过getAllType()方法获取所有博客类型，然后将其添加到Model对象中，以便在前端页面中显示。
+//    创建一个Blog对象，并将其也添加到Model对象中。这个Blog对象会在前端页面中被绑定到表单上，用户可以通过填写表单来创建新博客。
     @GetMapping("/blogs/input")
     public String input(Model model) {
         model.addAttribute("types",typeService.getAllType());
@@ -44,7 +42,7 @@ public class BlogController {
         return "admin/blogs-input";
     }
 
-    //博客新增
+    //博客新增，匹配POST请求
     @PostMapping("/blogs")
     public String post(Blog blog, RedirectAttributes attributes, HttpSession session){
         //新增的时候需要传递blog对象，blog对象需要有user
@@ -68,22 +66,26 @@ public class BlogController {
     //博客列表
     @RequestMapping("/blogs")
     public String blogs(Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
-
-        //按照排序字段 倒序 排序
+        //指定排序字段为“update_time”，按照倒序排列
         String orderBy = "update_time desc";
+//      用来启动MyBatis分页插件，设置每页显示10条记录，按照orderBy所指定的方式进行排序，pageNum表示当前页码数，默认值为1。
         PageHelper.startPage(pageNum,10,orderBy);
+//      获取所有博客记录的信息
         List<BlogQuery> list = blogService.getAllBlog();
+//      通过PageInfo对象包装查询结果，其中包含了详细的分页信息
         PageInfo<BlogQuery> pageInfo = new PageInfo<BlogQuery>(list);
+//      将所有的博客类型信息传递到前端页面
         model.addAttribute("types",typeService.getAllType());
+//        将分页数据传递到前端页面
         model.addAttribute("pageInfo",pageInfo);
         return "admin/blogs";
-
     }
 
     //删除博客
     @GetMapping("/blogs/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes) {
         blogService.deleteBlog(id);
+//        将一个名为"message"的Flash属性添加到重定向请求中，以便重定向后能够访问该属性。在本例中，属性值为"删除成功"。
         attributes.addFlashAttribute("message", "删除成功");
         return "redirect:/admin/blogs";
     }
@@ -115,8 +117,10 @@ public class BlogController {
     public String search(SearchBlog searchBlog, Model model,
                          @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum) {
         List<BlogQuery> blogBySearch = blogService.getBlogBySearch(searchBlog);
+//        使用PageHelper插件对blogBySearch进行分页处理，并将结果存入PageInfo<BlogQuery>类型的变量pageInfo中
         PageHelper.startPage(pageNum, 10);
         PageInfo<BlogQuery> pageInfo = new PageInfo<>(blogBySearch);
+//        将pageInfo作为属性添加到model中
         model.addAttribute("pageInfo", pageInfo);
         return "admin/blogs :: blogList";
     }
