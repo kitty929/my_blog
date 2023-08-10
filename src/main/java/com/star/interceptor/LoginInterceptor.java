@@ -7,10 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Description: 登录过滤拦截
- * @Date: Created in 23:42 2020/5/27
- * @Author: ONESTAR
- * @QQ群: 530311074
- * @URL: https://onestar.newstar.net.cn/
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override

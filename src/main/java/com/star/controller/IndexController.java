@@ -30,6 +30,7 @@ public class IndexController {
     //分页查询博客列表
     @GetMapping("/")
     public String index(Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum, RedirectAttributes attributes){
+//        开启了分页功能，每页最多显示10条记录
         PageHelper.startPage(pageNum,10);
         //查询博客列表
         List<FirstPageBlog> allFirstPageBlog = blogService.getAllFirstPageBlog();
@@ -37,7 +38,7 @@ public class IndexController {
         List<RecommendBlog> recommendedBlog = blogService.getRecommendedBlog();
         //查询最新评论
         List<NewComment> newComments = blogService.getNewComment();
-
+//        存储分页信息和查询结果
         PageInfo<FirstPageBlog> pageInfo = new PageInfo<>(allFirstPageBlog);
         model.addAttribute("pageInfo",pageInfo);
         model.addAttribute("recommendedBlogs", recommendedBlog);
@@ -78,8 +79,6 @@ public class IndexController {
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id, Model model) {
         DetailedBlog detailedBlog = blogService.getDetailedBlog(id);
-//        List<Comment> comments = commentService.listCommentByBlogId(id);
-//        model.addAttribute("comments", comments);
         model.addAttribute("blog", detailedBlog);
         return "blog";
     }

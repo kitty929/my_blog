@@ -10,8 +10,6 @@ public class MD5Utils {
 
     /**
      * @Description: MD5加密
-     * @Auther: ONESTAR
-     * @Date: 17:19 2020/5/27
      * @Param: 要加密的字符串
      * @Return: 加密后的字符串
      */
@@ -43,7 +41,7 @@ public class MD5Utils {
 
 
     public static void main(String[] args) {
-        System.out.println(code("111111"));
+        System.out.println(code("111"));
     }
 
 }

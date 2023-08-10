@@ -71,9 +71,8 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.getFirstPageBlog();
     }
 
-    //查询首页最新推荐信息
+    //查询首页最新推荐信息，将其存储在类型为 RecommendBlog 的 List 中
     @Override
-    // @Cacheable(value = "commentblogList",key = "'commentblog'")       // redis缓存
     public List<RecommendBlog> getRecommendedBlog() {
         List<RecommendBlog> allRecommendBlog = blogDao.getAllRecommendBlog();
         return allRecommendBlog;
@@ -133,7 +132,6 @@ public class BlogServiceImpl implements BlogService {
 
     //查询最新评论
     @Override
-    // @Cacheable(value = "NewCommentList",key = "'NewComment'")      // redis缓存
     public List<NewComment> getNewComment() {
         return blogDao.getNewComment();
     }

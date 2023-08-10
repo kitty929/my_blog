@@ -30,7 +30,9 @@ public class MessageController {
 
     @GetMapping("/message")
     public String message(Model model,@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum) {
+//        使用PageHelper插件开始分页查询，pageNum参数指定查询的页码，15表示每页要显示的记录数
         PageHelper.startPage(pageNum,15);
+        //查询留言列表
         List<Message> messages = messageService.listMessage();
         PageInfo<Message> pageInfo = new PageInfo<Message>(messages);
         model.addAttribute("messages", pageInfo);
@@ -40,12 +42,11 @@ public class MessageController {
 //    查询留言
     @GetMapping("/messagecomment")
     public String messages(Model model,@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum) {
-
         PageHelper.startPage(pageNum,15);
+        //查询留言列表
         List<Message> messages = messageService.listMessage();
         PageInfo<Message> pageInfo = new PageInfo<Message>(messages);
         model.addAttribute("messages", pageInfo);
-
         return "message::messageList";
     }
 

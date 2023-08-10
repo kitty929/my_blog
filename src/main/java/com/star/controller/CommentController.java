@@ -37,6 +37,7 @@ public class CommentController {
     //查询评论列表
     @GetMapping("/comments/{blogId}")
     public String comments(@PathVariable Long blogId, Model model) {
+//        根据博客id查询评论信息
         List<Comment> comments = commentService.listCommentByBlogId(blogId);
         model.addAttribute("comments", comments);
         return "blog :: commentList";
@@ -46,15 +47,18 @@ public class CommentController {
     @PostMapping("/comments")
     @AccessLimit(seconds = 15, maxCount = 3) //15秒内 允许请求3次
     public String post(Comment comment, HttpSession session, Model model) {
+//        从comment对象中获取blogId,从session中获取当前user对象
         Long blogId = comment.getBlogId();
         User user = (User) session.getAttribute("user");
         if (user != null) {
             comment.setAvatar(user.getAvatar());
+//            该评论为管理员所发表的评论
             comment.setAdminComment(true);
         } else {
             //设置头像
             comment.setAvatar(avatar);
         }
+//        从comment对象中获取parentid
         Long parentId = comment.getParentComment().getId();
         Comment parentComment = null;
         if (comment.getParentComment().getId() != null) {

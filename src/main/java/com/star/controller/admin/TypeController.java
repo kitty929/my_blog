@@ -27,11 +27,14 @@ public class TypeController {
     //    分页查询分类列表
     @GetMapping("/types")
     public String list(Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
-        //按照排序字段 倒序 排序
+        //orderBy 字符串指定按 id 字段倒序排序
         String orderBy = "id desc";
+//      每页十条，按照orderBy顺序
         PageHelper.startPage(pageNum,10,orderBy);
         List<Type> list = typeService.getAllType();
+//        将List结果存入PageInfo<BlogQuery>类型的变量pageInfo中
         PageInfo<Type> pageInfo = new PageInfo<Type>(list);
+//        将pageInfo作为属性添加到model中
         model.addAttribute("pageInfo",pageInfo);
         return "admin/types";
     }

@@ -24,7 +24,6 @@ public class LoginController {
 
     /**
      * @Description: 跳转登录页面
-     * @Param:
      * @Return: 返回登录页面
      */
     @GetMapping
@@ -48,6 +47,7 @@ public class LoginController {
         User user = userService.checkUser(username, password);
         if (user != null) {
             user.setPassword(null);
+//            存储登录用户的信息
             session.setAttribute("user",user);
             session.setMaxInactiveInterval(-1);     // 设置session永不过期
             return "admin/index";

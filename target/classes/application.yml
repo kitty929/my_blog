@@ -1,0 +1,20 @@
+spring:
+  thymeleaf:
+    mode: HTML
+  profiles:
+    active: dev
+
+mybatis:
+  type-aliases-package: com.star.entity
+#  类路径下的/mapper目录下寻找xml文件
+  mapper-locations: classpath:mapper/*.xml
+#  MyBatis将数据库字段自动映射到Java实体类中的命名属性
+  configuration:
+    map-underscore-to-camel-case: true
+
+comment.avatar: /images/avatar.png
+message.avatar: /images/avatar.png
+
+
+
+

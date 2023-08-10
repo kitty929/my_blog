@@ -32,11 +32,9 @@ public class MessageServiceImpl implements MessageService {
 
     /**
      * @Description: 查询留言
-     * @Param:
      * @Return: 留言消息
      */
     @Override
-    // @Cacheable(value = "messageList",key = "'message'")
     public List<Message> listMessage() {
         //查询出父节点
         List<Message> messages = messageDao.findByParentIdNull(Long.parseLong("-1"));
@@ -57,7 +55,6 @@ public class MessageServiceImpl implements MessageService {
      * @Description: 查询出子留言
      * @Param: childMessages：所有子留言
      * @Param: parentNickname1：父留言的姓名
-     * @Return:
      */
     private void combineChildren(List<Message> childMessages, String parentNickname1) {
         //判断是否有一级子回复
@@ -78,7 +75,6 @@ public class MessageServiceImpl implements MessageService {
      * @Description: 循环迭代找出子集回复
      * @Param: childId：子留言的id
      * @Param: parentNickname1：子留言的姓名
-     * @Return:
      */
     private void recursively(Long childId, String parentNickname1) {
         //根据子一级留言的id找到子二级留言
@@ -100,10 +96,8 @@ public class MessageServiceImpl implements MessageService {
     //存储留言信息
     public int saveMessage(Message message,Message parentMessage) {
         message.setCreateTime(new Date());
-
         // 判断是否有父评论，有的话就发送邮件
         if(!StringUtils.isEmpty(parentMessage)){
-
             String parentNickname = parentMessage.getNickname();
             String nickName = message.getNickname();
             String comtent = "亲爱的" + parentNickname + "，您在评论收到了来自" + nickName + "的回复！内容如下：" + "\r\n" + "\r\n" +  message.getContent();

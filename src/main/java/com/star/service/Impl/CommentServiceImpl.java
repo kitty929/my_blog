@@ -40,11 +40,12 @@ public class CommentServiceImpl implements CommentService {
      */
     @Override
     public List<Comment> listCommentByBlogId(Long blogId) {
-        //查询出父节点
+        //查询出父级评论
         List<Comment> comments = commentDao.findByBlogIdParentIdNull(blogId, Long.parseLong("-1"));
         for(Comment comment : comments){
             Long id = comment.getId();
             String parentNickname1 = comment.getNickname();
+//            查询一级回复
             List<Comment> childComments = commentDao.findByBlogIdParentIdNotNull(blogId,id);
             //查询出子评论
             combineChildren(blogId, childComments, parentNickname1);
@@ -79,12 +80,11 @@ public class CommentServiceImpl implements CommentService {
      * @Description: 循环迭代找出子集回复
      * @Param: chileId:子评论id
      * @Param: parentNickname1:子评论姓名
-     * @Return:
      */
     private void recursively(Long blogId, Long childId, String parentNickname1) {
         //根据子一级评论的id找到子二级评论
         List<Comment> replayComments = commentDao.findByBlogIdAndReplayId(blogId,childId);
-
+//判断是否有二级子评论
         if(replayComments.size() > 0){
             for(Comment replayComment : replayComments){
                 String parentNickname = replayComment.getNickname();
@@ -120,7 +120,6 @@ public class CommentServiceImpl implements CommentService {
             simpleMailMessage.setFrom("wm929mm@163.com");//发送者邮箱
             javaMailSender.send(simpleMailMessage);
         }
-
         return comments;
     }
 

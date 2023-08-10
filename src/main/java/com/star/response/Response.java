@@ -4,12 +4,6 @@ import java.io.Serializable;
 
 /**
  * @ClassName: Response
- * @Description: TODO
- * @Author ONESTAR
- * @Date: 2021/1/22 22:55
- * @微信：YXK-ONESTAR
- * @URL：https://onestar.newstar.net.cn/
- * @Version 1.0
  */
 public class Response<T> implements Serializable {
     private static final long serialVersionUID = -4505655308965878999L;
